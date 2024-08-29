@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음악 웹사이트 - 추천 플레이리스트</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+        }
+        /* 헤더 스타일 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 30px; /* 상단 여백 추가 */
+        }
+
+        header h2 {
+            padding : 50px;
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        header input[type="text"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            width: 250px; /* 더 안쪽으로 조정 */
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        header input[type="text"]:focus {
+            border-color: #fff;
+        }
+        .search-bar {
+            width: 80%;
+            padding: 0px;
+            margin: 20px auto;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        .playlist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .playlist-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+        .playlist-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        /* 그리드 뷰 설정 */
+.playlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 그리드 컬럼 자동 채움 */
+    gap: 20px; /* 아이템 간의 간격 설정 */
+    padding-bottom: 10px;
+}
+
+.playlist-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.playlist-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.playlist-item:hover {
+    transform: translateY(-5px);
+}
+
+.playlist-item p {
+    margin: 10px 0 0;
+    font-size: 1em;
+    font-weight: 500;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h2>SHARING</h2>
+        <input class="search-bar" type="text" placeholder="노래,앨범,팟캐스트 검색" style = "width: 700px;">
+    </header>
+    <section class="playlist-section">
+        <h3>추천 플레이리스트</h3>
+        <div class="playlist">
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 1">
+                <p>플레이리스트 1</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 2">
+                <p>플레이리스트 2</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 3">
+                <p>플레이리스트 3</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 4">
+                <p>플레이리스트 4</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 1">
+                <p>플레이리스트 5</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 2">
+                <p>플레이리스트 6</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 3">
+                <p>플레이리스트 7</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 4">
+                <p>플레이리스트 8</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 3">
+                <p>플레이리스트 9</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 4">
+                <p>플레이리스트 10</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 3">
+                <p>플레이리스트 11</p>
+            </div>
+            <div class="playlist-item">
+                <img src="https://via.placeholder.com/200x200" alt="Playlist 4">
+                <p>플레이리스트 12</p>
+            </div>
+            <!-- 추가 플레이리스트 항목들 -->
+    </div>
+        </div>
+    </section>
+</body>
+</html>
