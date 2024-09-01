@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Overlay Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-text {
+            position: absolute;
+            top: 50px;
+            left: 45%;
+            font-size: 3em;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .header-subtext {
+            position: absolute;
+            top: 95px;
+            left: 41.5%;
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .audio-container-left, .audio-container-right {
+            position: absolute;
+            top: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .audio-container-left {
+            left: 10%;
+        }
+
+        .audio-container-right {
+            left: 90%;
+            transform: translateX(-100%);
+        }
+
+        .glowing-circle-left, .glowing-circle-right {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 1.0) 65%, rgba(255, 255, 255, 0) 70%);
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.6), 
+                        0 0 100px rgba(255, 255, 255, 0.5),
+                        inset 0 0 30px rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .glowing-box {
+            width: 600px;
+            height: 450px;
+            background-color: black; /* 배경색을 black으로 설정 */
+            position: absolute;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 60px rgba(255, 255, 255, 0.15), /* 더 부드러운 외곽선을 위해 투명도 낮춤 */
+                0 0 100px rgba(255, 255, 255, 0.1), 
+                0 0 140px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); /* 배경 흐리기 효과 추가 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px; /* 모서리를 둥글게 처리하여 자연스럽게 */
+        }
+        .description-text {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-box {
+            width: 250px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+            background-color: transparent;
+            color: white;
+        }
+
+        .login-button {
+            margin-top: 20px;
+            padding: 12px 36px;
+            font-size: 1em;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #ff416c, #ff4b2b);
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(145deg, #ff4b2b, #ff416c);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: #ddd;
+        }
+
+        .blinking {
+            animation: blink 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {opacity:0;}
+            100% {opacity:1;}
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: top 0.5s;
+            z-index: 1000;
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body style="overflow-x:hidden">
+
+    <!-- 메뉴 바 -->
+    <div class="menu-bar" id="menuBar">
+        <a href="#section1">Home</a>
+        <a href="#section2">About</a>
+        <a href="#section3">Contact</a>
+    </div>
+
+    <div class="container">
+        <!-- 중앙 메인 텍스트 -->
+        <div class="header-text">SHAPLI</div>
+        <div class="header-subtext">SHARE PLAYLIST</div> 
+    </div>
+
+    <div class="audio-container-left">
+        <div class="glowing-circle-left"></div>
+        <div class="glowing-circle-left"></div>
+        <div class="glowing-circle-left"></div>
+    </div>
+    <div class="audio-container-right">
+        <div class="glowing-circle-right"></div>
+        <div class="glowing-circle-right"></div>
+        <div class="glowing-circle-right"></div>
+    </div>
+
+    <!-- 빛나는 네모박스 내부에 아이디/패스워드 입력 필드 및 로그인 버튼 추가 -->
+    <div class="glowing-box">
+        <div class="description-text">
+            Build value with a lot of people<br>
+            What kind of music is your life full of
+        </div>
+        <div class="input-container">
+            <input type="text" class="input-box" placeholder="ID" required>
+            <input type="password" class="input-box" placeholder="Password" required>
+            <button class="login-button">Login</button>
+        </div>
+        <div class="links">
+            <a href="#signup">회원가입</a>
+            <a href="#help">도움말</a>
+        </div>
+    </div>
+
+    <script>
+        // 메뉴 바 표시/숨김 처리
+        document.addEventListener('mousemove', function(event) {
+            const menuBar = document.getElementById('menuBar');
+            if (event.clientY < 100) { // 마우스가 화면 상단 100px 이내로 이동할 경우
+                menuBar.style.top = '0';
+            } else {
+                menuBar.style.top = '-100px';
+            }
+        });
+    </script>
+</body>
+</html>
